@@ -1,0 +1,30 @@
+﻿@using AspNetBoilerPlate_Demo2.Web.Startup
+@model AspNetBoilerPlate_Demo2.Web.ViewModels.BookViewModel;
+
+@{
+	ViewBag.ActiveMenu = PageNames.NewBook;
+}
+
+<h3>Adding new book</h3>
+
+<br />
+
+<form asp-action="SaveBook">
+	<div class="form-group">
+		<input type="hidden" asp-for="Book.Id" />
+		<lable for="txtTitle">Title</lable>
+		<input type="text" id="txtTitle" class="form-control" placeholder="Title" asp-for="Book.Title" />
+	</div>
+	<div class="form-group">
+		<label for="txtAuthor">Author</label>
+		<select asp-for="Book.Author.Id" asp-items="Model.Authors" class="form-control"></select>
+	</div>
+	<div class="form-group">
+		<label for="txtDateofPublish">Date of Publish</label>
+		<input type="date" id="txtDateofPublish" class="form-control" placeholder="Date of publish" asp-for="Book.PublishedDate" />
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" type="submit">Save</button>
+		<button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Book")'">Cancel</button>
+	</div>
+</form>

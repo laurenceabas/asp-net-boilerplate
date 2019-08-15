@@ -1,0 +1,51 @@
+﻿@using AspNetBoilerPlate_Demo2.Web.Startup
+@model IEnumerable<AspNetBoilerPlate_Demo2.Entities.Author>
+@{
+	ViewBag.ActiveMenu = PageNames.Authors;
+}
+
+
+<h1>@L("Authors")</h1>
+<br />
+
+<button class="btn btn-default" onclick="location.href='@Url.Action("NewAuthor", "Author")'">Add New Author</button>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Name of Author</th>
+			<th scope="col">Date of Birth</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@{
+			if (Model.Count() < 1)
+			{
+				<tr>
+					<th scope="row">0</th>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			}
+			else
+			{
+				foreach (var author in Model)
+				{
+					<tr>
+						<th scope="row">@author.Id</th>
+						<td>@author.Name</td>
+						<td>@author.DateOfBirth.Date</td>
+						<td>
+							<a asp-action="NewAuthor" asp-route-id="@author.Id">Edit</a>
+							|
+							<a asp-action="DeleteAuthor" asp-route-id="@author.Id" class="text-danger ml-1" onclick="return confirm('Do you want to delete this author?')">Delete</a>
+						</td>
+					</tr>
+				}
+			}
+		}
+	</tbody>
+</table>

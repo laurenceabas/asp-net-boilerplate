@@ -1,0 +1,26 @@
+﻿@using AspNetBoilerPlate_Demo2.Web.Startup
+@model AspNetBoilerPlate_Demo2.Entities.Author
+
+@{
+	ViewBag.ActiveMenu = PageNames.NewAuthor;
+}
+
+<h3>Adding new author</h3>
+
+<br />
+
+<form asp-action="SaveAuthor">
+	<div class="form-group">
+		<input type="hidden" asp-for="Id" />
+		<lable for="txtTitle" class="control-label">Name of Author</lable>
+		<input type="text" id="txtTitle" class="form-control" placeholder="Title" asp-for="Name" />
+	</div>
+	<div class="form-group">
+		<label for="txtDateofPublish" class="control-label">Date of Birth</label>
+		<input type="date" id="txtDateofPublish" class="form-control" placeholder="Date of birth" asp-for="DateOfBirth" />
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" type="submit">Save</button>
+		<button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Author")'">Cancel</button>
+	</div>
+</form>
